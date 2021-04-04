@@ -2,9 +2,9 @@ export function preload() {
 
 }
 export function setup() {
-    createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight);
 }
 export function draw() {
-    background(0);
-    rect(100, 100, 200, 200);
+  background(0);
+  rect(100, 100, 200, 200);
 }
