@@ -1,6 +1,11 @@
 {
   "include": ["js/**/*"],
   "compilerOptions": {
-    "checkJs": true
+    "checkJs": true,
+    "target": "es2020",
+    "module": "es2020"
+  },
+  "typeAcquisition": {
+    "include": ["p5"]
   }
 }
