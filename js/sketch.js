@@ -1,6 +1,16 @@
 let viewTranslation;
 let viewScale;
 
+/**
+ * @type {import("states/states").EditorState}
+ */
+let editorState;
+
+/**
+ * @type {Level}
+ */
+let level;
+
 let drawFunc = undefined;
 let mouseWheelFunc = undefined;
 function preload() {

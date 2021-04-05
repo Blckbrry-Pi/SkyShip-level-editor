@@ -2,6 +2,7 @@ import { initStars, starryBackground, rotateStars } from 'https://blckbrry-pi.gi
 import { drawGrid } from './drawRoutine/grid.js';
 import { runnerSelector } from "./selectorSketches/runnerScroll.js"
 import { passCallbacks } from './selectorSketches/wrapperFunctions.js';
+import { EditorState } from './states/states.js';
 
 const containerPos = createVector(100, 100);
 const containerSize = createVector(200, 250);
@@ -32,6 +33,14 @@ export function setup() {
 
   viewTranslation = createVector(0, 0);
   viewScale = 1;
+  
+  editorState = new EditorState();
+  level = {
+    name: "My Level",
+    attractors: [],
+    zippers: [],
+    obstacles: []
+  };
 }
 
 export function draw() {
@@ -41,6 +50,7 @@ export function draw() {
   strokeWeight(4);
   rect(containerPos.x, containerPos.y, containerSize.x, containerSize.y);
   drawGrid();
+  editorState.doStateLoop();
 }
 
 function mouseIsInContainer() {

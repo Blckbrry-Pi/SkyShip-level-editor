@@ -1,16 +1,25 @@
-import { Attractor } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/attractor.js';
-import { Zipper } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js';
-import { Obstacle } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/obstacles.js';
-import { FinishLine } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/finishLine.js';
-import { Runner } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js';
+import panScrollZoom from './panScrollZoom';
+import selectExisting from './selectExisting';
+import selectNew from './selectNew';
+
+const states = {
+  panScrollZoom,
+  selectExisting,
+  selectNew
+};
 
 /**
  * Represents the state of the editor and associated metadata.
  */
 export class EditorState {
-  constructor() {
-    /** Name of the current state. */
-    this.stateName = "selectExisting";
+  /**
+   * @param {keyof typeof states} [state]
+   */
+  constructor(state = "panScrollZoom") {
+    /**
+     * Name of the current state.
+     */
+    this.stateName = state;
 
     /**
      * Type of selected object.
@@ -27,7 +36,7 @@ export class EditorState {
 
   /**
    * Updates the current editor state.
-   * @param {string} stateName
+   * @param {keyof typeof states} stateName
    * @param {"attractors" | "zippers" | "obstacles" | "finishLine" | "runner" | null} objectType
    * @param {number | null} selectedIndex
    */
@@ -40,8 +49,13 @@ export class EditorState {
   /**
    * Gets the selected object from a level.
    * Returns the object or null if there is no selected object.
-   * @param {{attractors: Attractor[], zippers: Zipper[], obstacles: Obstacle[], finishLine: FinishLine, runner: Runner}} level
-   * @returns {Attractor | Zipper | Obstacle | FinishLine | Runner | null}
+   * @param {Level} level
+   * @returns {import("https://blckbrry-pi.github.io/SkyShip/js/classes/attractor.js").Attractor | 
+   *  import("https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js").Zipper |
+   *  import("https://blckbrry-pi.github.io/SkyShip/js/classes/obstacles.js").Obstacle |
+   *  import("https://blckbrry-pi.github.io/SkyShip/js/classes/finishLine.js").FinishLine |
+   *  import("https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js").Runner |
+   *  null}
    */
   getSelectedObject(level) {
     if (this.stateName !== "selectExisting") return null;
@@ -53,11 +67,11 @@ export class EditorState {
       return level[this.objectType][this.selectedIndex];
     }
   }
+
+  /**
+   * Calls the function of the current state.
+   */
+  doStateLoop() {
+    states[this.stateName](this);
+  }
 }
-
-export let editorState = new EditorState();
-
-/**
- * @type {{name: string, attractors: Attractor[], zippers: Zipper[], obstacles: Obstacle[], finishLine: FinishLine, runner: Runner}}
- */
-export let level;
