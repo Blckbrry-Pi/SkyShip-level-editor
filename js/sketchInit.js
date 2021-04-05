@@ -52,9 +52,15 @@ function mouseIsInContainer() {
 export function mouseWheel(event) {
   if (mouseIsInContainer()) return true;
 
+  const maxScale = 4;
+  const minScale = 0.25;
+
   let mousePos = createVector(mouseX, mouseY);
 
-  let scaleAmount = (100 + event.delta) / 100
+  let scaleAmount = (100 + event.delta) / 100;
+  if (viewScale * scaleAmount > maxScale) scaleAmount = maxScale / viewScale;
+  if (viewScale * scaleAmount < minScale) scaleAmount = minScale / viewScale;
+
   viewScale *= scaleAmount;
 
   mousePos.mult(1 - 1/scaleAmount);
