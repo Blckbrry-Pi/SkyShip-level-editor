@@ -7,14 +7,17 @@ export function drawGrid() {
   let medDivSize   = gridSize * 2 / viewScale;
   let smallDivSize = gridSize * 1 / viewScale;
 
-  let startPoint = createVector(
-    Math.floor(viewTranslation.x / bigDivSize) * bigDivSize,
-    Math.floor(viewTranslation.y / bigDivSize) * bigDivSize,
-  )
+  let startPoint = createVector();
+  startPoint.sub(
+    viewTranslation.x % (gridSize * 4),
+    viewTranslation.y % (gridSize * 4),
+  );
+  startPoint.sub(gridSize * 4, gridSize * 4)
+  startPoint.div(viewScale);
 
   stroke(100);
   strokeWeight(1);
-  for (let i = startPoint.x; i < startPoint.x + width; i+=bigDivSize) {
+  for (let i = startPoint.x; i < width; i+=bigDivSize) {
     let xPos;
     xPos = i;
     strokeWeight(3/3);
@@ -29,7 +32,7 @@ export function drawGrid() {
     strokeWeight(1/3);
     line(xPos, 0, xPos, height);
   }
-  for (let i = startPoint.y; i < startPoint.y + height; i+=bigDivSize) {
+  for (let i = startPoint.y; i < height; i+=bigDivSize) {
     let yPos;
     yPos = i;
     strokeWeight(3/3);

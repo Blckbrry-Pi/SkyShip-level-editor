@@ -48,3 +48,19 @@ function mouseIsInContainer() {
   let yInBounds = containerPos.y < mouseY && mouseY < containerPos.y + containerSize.y;
   return xInBounds && yInBounds;
 }
+
+export function mouseWheel(event) {
+  if (mouseIsInContainer()) return true;
+
+  let mousePos = createVector(mouseX, mouseY);
+
+  let scaleAmount = (100 + event.delta) / 100
+  viewScale *= scaleAmount;
+
+  mousePos.mult(1 - 1/scaleAmount);
+  mousePos.mult(viewScale);
+
+  viewTranslation.sub(mousePos);
+
+  return false;
+}
