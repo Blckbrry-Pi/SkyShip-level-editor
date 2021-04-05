@@ -3,7 +3,9 @@
   "compilerOptions": {
     "checkJs": true,
     "target": "es2020",
-    "module": "es2020"
+    "module": "es2020",
+    "allowSyntheticDefaultImports": true,
+    "allowUmdGlobalAccess": true
   },
   "typeAcquisition": {
     "include": ["p5"]
