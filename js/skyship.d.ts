@@ -108,6 +108,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js" {
 declare module "https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/backgroundStars.js" {
   function initStars(starCount: number): void;
   function starryBackground(inAttractors: boolean): void;
+  function rotateStars(timeMult: number): void;
 }
 
 declare module "https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/globalFuncs.js" {
