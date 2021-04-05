@@ -13,6 +13,7 @@ let level;
 
 let drawFunc = undefined;
 let mouseWheelFunc = undefined;
+let mouseDragFunc = undefined;
 function preload() {
   import("./sketchInit.js").then(module => module.preload());
 }
@@ -36,6 +37,15 @@ function mouseWheel(event) {
     });
   else
     return mouseWheelFunc(event);
+}
+function mouseDragged(event) {
+  if (typeof mouseDragFunc != "function")
+    import("./sketchInit.js").then(module => {
+      mouseDragFunc = module.mouseDragged;
+      return module.mouseDragged(event);
+    });
+  else
+    return mouseDragFunc(event);
 }
 
 function windowResized() {
