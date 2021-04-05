@@ -37,3 +37,7 @@ function mouseWheel(event) {
   else
     return mouseWheelFunc(event);
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
