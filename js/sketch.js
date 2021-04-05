@@ -1,3 +1,6 @@
+let viewTranslation;
+let viewScale;
+
 let drawFunc = undefined;
 function preload() {
   import("./sketchInit.js").then(module => module.preload());
