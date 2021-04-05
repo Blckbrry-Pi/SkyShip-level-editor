@@ -36,6 +36,23 @@ export class EditorState {
     this.objectType = objectType;
     this.selectedIndex = selectedIndex;
   }
+
+  /**
+   * Gets the selected object from a level.
+   * Returns the object or null if there is no selected object.
+   * @param {{attractors: Attractor[], zippers: Zipper[], obstacles: Obstacle[], finishLine: FinishLine, runner: Runner}} level
+   * @returns {Attractor | Zipper | Obstacle | FinishLine | Runner | null}
+   */
+  getSelectedObject(level) {
+    if (this.stateName !== "selectExisting") return null;
+    if (!this.objectType) {
+      return null;
+    } else if (this.objectType === "finishLine" || this.objectType === "runner") {
+      return level[this.objectType];
+    } else {
+      return level[this.objectType][this.selectedIndex];
+    }
+  }
 }
 
 export let editorState = new EditorState();
