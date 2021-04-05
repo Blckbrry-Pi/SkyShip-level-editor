@@ -5,7 +5,7 @@ export function preload() {
 }
 export function setup() {
   createCanvas(windowWidth, windowHeight);
-  initStars(100);
+  initStars(width * height / 320);
 }
 export function draw() {
   starryBackground(false);
