@@ -1,6 +1,6 @@
-import panScrollZoom from './panScrollZoom';
-import selectExisting from './selectExisting';
-import selectNew from './selectNew';
+import panScrollZoom from './panScrollZoom.js';
+import selectExisting from './selectExisting.js';
+import selectNew from './selectNew.js';
 
 const states = {
   panScrollZoom,
