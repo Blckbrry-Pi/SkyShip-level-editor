@@ -118,18 +118,21 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/globalFu
   function runnerStep(): void;
 }
 
-interface Level {
-  name: string;
-  attractors: Attractor[];
-  zippers: Zipper[];
-  obstacles: Obstacle[];
-  finishLine: FinishLine;
-  runner: Runner;
-}
-
 declare module "https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/levels.js" {
+  import { Attractor } from "https://blckbrry-pi.github.io/SkyShip/js/classes/attractor.js";
+  import { FinishLine } from "https://blckbrry-pi.github.io/SkyShip/js/classes/finishLine.js";
+  import { Obstacle } from "https://blckbrry-pi.github.io/SkyShip/js/classes/obstacles.js";
+  import { Zipper } from "https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js";
+
   function addJSONs(levelsString: string);
-  function JSON2Level(levelString: string): Level;
+  function JSON2Level(levelString: string): {
+    name: string;
+    attractors: Attractor[];
+    zippers: Zipper[];
+    obstacles: Obstacle[];
+    finishLine: FinishLine;
+    runner: Runner;
+  };
   function loadLevel(levelIndex: number): void;
 }
 
