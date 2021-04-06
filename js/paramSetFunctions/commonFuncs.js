@@ -1,10 +1,10 @@
 export function drawArrow(base, vec, myColor) {
   let onScreenBase = base.copy();
   onScreenBase.sub(editorState.viewTranslation);
-  onScreenBase.div(editorState.viewScale);
+  onScreenBase.mult(editorState.viewScale);
 
   let onScreenVec = vec.copy();
-  onScreenVec.div(editorState.viewScale);
+  onScreenVec.mult(editorState.viewScale);
 
   push();
     stroke(myColor);

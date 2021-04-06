@@ -74,14 +74,13 @@ export function mouseWheel(event) {
   mousePos.mult(1 - 1/scaleAmount);
   mousePos.div(editorState.viewScale);
 
-  editorState.viewTranslation.sub(mousePos);
-
+  editorState.viewTranslation.add(mousePos);
   return false;
 }
 
 export function mouseDragged(event) {
   let movement = createVector(event.movementX, event.movementY);
-  movement.mult(editorState.viewScale);
+  movement.div(editorState.viewScale);
   if (editorState.stateName == "panScrollZoom") editorState.viewTranslation.sub(movement);
 }
 
