@@ -65,7 +65,7 @@ export function mouseWheel(event) {
 
   let mousePos = createVector(mouseX, mouseY);
 
-  let scaleAmount = 100 / (100 + event.delta);
+  let scaleAmount = Math.exp(-event.delta / 100);
   if (editorState.viewScale * scaleAmount > maxScale) scaleAmount = maxScale / editorState.viewScale;
   if (editorState.viewScale * scaleAmount < minScale) scaleAmount = minScale / editorState.viewScale;
 
