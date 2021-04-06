@@ -3,4 +3,5 @@
  */
 export default function panScrollZoom(editorState) {
   cursor(mouseIsPressed ? "grabbing" : "grab");
+  editorState.draw(level);
 }

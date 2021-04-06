@@ -106,4 +106,19 @@ export class EditorState {
   doStateLoop() {
     states[this.stateName](this);
   }
+
+  /**
+   * Draws a level at the editor's current translation and scale.
+   * @param {Level} level
+   * @param {number?} inGame
+   */
+  draw(level, inGame = 0) {
+    // TODO: Uncomment when support for translation is added
+    // [level.attractors, level.obstacles, level.zippers].flat().forEach(object => object.draw());
+
+    if (level.runner) level.runner.draw(inGame, this.viewScale, this.viewTranslation);
+
+    // TODO: Uncomment when support for translation is added
+    // if (level.finishLine) level.finishLine.draw();
+  }
 }

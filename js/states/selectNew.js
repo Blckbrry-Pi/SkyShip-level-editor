@@ -21,7 +21,7 @@ export default function selectNew(editorState) {
         break;
       }
       if (editorState.paramIndex !== -1) runnerEdit[editorState.paramIndex].editParam(level.runner)
-      level.runner.draw(0, editorState.viewScale, editorState.viewTranslation);
+      editorState.draw(level);
       break;
   }
   console.log(editorState.getSelectedObject(level));

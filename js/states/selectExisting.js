@@ -3,4 +3,5 @@
  */
 export default function selectExisting(editorState) {
   cursor("default");
+  editorState.draw(level);
 }

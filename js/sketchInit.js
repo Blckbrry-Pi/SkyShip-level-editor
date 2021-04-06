@@ -42,6 +42,8 @@ export function setup() {
 }
 
 export function draw() {
+  if (!editorState) return;
+
   rotateStars(0.2);
   starryBackground(false);
   stroke(0, 255, 0);
