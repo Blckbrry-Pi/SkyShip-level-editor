@@ -62,6 +62,12 @@ export class EditorState {
      * @type {boolean}
      * **/
     this.quantization = true;
+
+    /**
+     * Tool palette associated with the editor.
+     * @type {import("../toolPalette.js").ToolPalette | undefined}
+     */
+    this.toolPalette = undefined;
   }
 
   /**
@@ -76,6 +82,7 @@ export class EditorState {
     this.objectType = objectType;
     this.selectedIndex = selectedIndex;
     this.paramIndex = paramIndex;
+    this.toolPalette.update();
   }
 
   /**
