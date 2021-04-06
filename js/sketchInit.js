@@ -71,8 +71,8 @@ export function mouseWheel(event) {
 
   editorState.viewScale *= scaleAmount;
 
-  mousePos.mult(1 - 1/scaleAmount);
-  mousePos.div(editorState.viewScale);
+  mousePos.mult(1 - scaleAmount);
+  mousePos.div(-editorState.viewScale);
 
   editorState.viewTranslation.add(mousePos);
   return false;

@@ -14,8 +14,8 @@ function editPosition(runner) {
   mousePos.add(editorState.viewTranslation);
 
   if (editorState.quantization) {
-    mousePos.x = round(mousePos.x / (editorState.gridSize * editorState.viewScale)) * (editorState.gridSize * editorState.viewScale);
-    mousePos.y = round(mousePos.y / (editorState.gridSize * editorState.viewScale)) * (editorState.gridSize * editorState.viewScale);
+    mousePos.x = round(mousePos.x / editorState.gridSize) * editorState.gridSize;
+    mousePos.y = round(mousePos.y / editorState.gridSize) * editorState.gridSize;
   }
 
   runner.pos = mousePos;
