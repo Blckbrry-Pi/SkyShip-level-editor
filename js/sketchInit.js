@@ -1,3 +1,4 @@
+import { Runner } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js';
 import { initStars, starryBackground, rotateStars } from 'https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/backgroundStars.js';
 import { drawGrid } from './drawRoutine/grid.js';
 import { runnerSelector } from "./selectorSketches/runnerScroll.js"
@@ -26,14 +27,11 @@ export function setup() {
     runnerSelector,
     () => {return runneravailable > 0;},
     mouseIsInContainer,
-    () => {console.log(runneravailable); runneravailable--;}
+    () => {level.runner = new Runner(0, 0, 0, 0, 0); editorState.setState("selectNew", "runner", null, -1);}
   );
 
   for (let i = 0; i < 10; i++) new p5(runnerSketchMaker, div.elt);
 
-  viewTranslation = createVector(0, 0);
-  viewScale = 1;
-  
   editorState = new EditorState();
   level = {
     name: "My Level",
@@ -67,22 +65,33 @@ export function mouseWheel(event) {
 
   let mousePos = createVector(mouseX, mouseY);
 
-  let scaleAmount = (100 + event.delta) / 100;
-  if (viewScale * scaleAmount > maxScale) scaleAmount = maxScale / viewScale;
-  if (viewScale * scaleAmount < minScale) scaleAmount = minScale / viewScale;
+  let scaleAmount = 100 / (100 + event.delta);
+  if (editorState.viewScale * scaleAmount > maxScale) scaleAmount = maxScale / editorState.viewScale;
+  if (editorState.viewScale * scaleAmount < minScale) scaleAmount = minScale / editorState.viewScale;
 
-  viewScale *= scaleAmount;
+  editorState.viewScale *= scaleAmount;
 
   mousePos.mult(1 - 1/scaleAmount);
-  mousePos.mult(viewScale);
+  mousePos.div(editorState.viewScale);
 
-  viewTranslation.sub(mousePos);
+  editorState.viewTranslation.sub(mousePos);
 
   return false;
 }
 
 export function mouseDragged(event) {
   let movement = createVector(event.movementX, event.movementY);
-  movement.mult(viewScale);
-  if (editorState.stateName == "panScrollZoom") viewTranslation.sub(movement);
+  movement.mult(editorState.viewScale);
+  if (editorState.stateName == "panScrollZoom") editorState.viewTranslation.sub(movement);
+}
+
+export function mouseClicked() {
+  switch (editorState.stateName) {
+    case "selectExisting":
+      editorState.setState("panScrollZoom");
+      break;
+    case "selectNew":
+      editorState.paramIndex++;
+      break;
+  }
 }

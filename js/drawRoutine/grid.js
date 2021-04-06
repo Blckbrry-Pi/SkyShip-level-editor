@@ -1,19 +1,20 @@
-let gridSize = 25;
-
+/**
+ * Draws the grid at size and position denoted by viewTranslation and viewScale
+ * **/
 export function drawGrid() {
-  if (gridSize == 0) return;
+  if (editorState.gridSize == 0) return;
 
-  let bigDivSize   = gridSize * 4 / viewScale;
-  let medDivSize   = gridSize * 2 / viewScale;
-  let smallDivSize = gridSize * 1 / viewScale;
+  let bigDivSize   = editorState.gridSize * 4 * editorState.viewScale;
+  let medDivSize   = editorState.gridSize * 2 * editorState.viewScale;
+  let smallDivSize = editorState.gridSize * 1 * editorState.viewScale;
 
   let startPoint = createVector();
-  startPoint.sub(
-    viewTranslation.x % (gridSize * 4),
-    viewTranslation.y % (gridSize * 4),
+  startPoint.add(
+    editorState.viewTranslation.x % (editorState.gridSize * 4),
+    editorState.viewTranslation.y % (editorState.gridSize * 4),
   );
-  startPoint.sub(gridSize * 4, gridSize * 4)
-  startPoint.div(viewScale);
+  startPoint.sub(editorState.gridSize * 4, editorState.gridSize * 4)
+  startPoint.mult(editorState.viewScale);
 
   stroke(100);
   strokeWeight(1);
@@ -47,8 +48,4 @@ export function drawGrid() {
     strokeWeight(1/3);
     line(0, yPos, width, yPos);
   }
-}
-
-export function setGridSize(newGridSize = 25) {
-  gridSize = newGridSize;
 }

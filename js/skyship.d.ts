@@ -66,7 +66,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js" {
     vel: p5.Vector;
     targetVelMag: number;
     connectedAttractor: {index: number, springLen: number, pos: p5.Vector};
-    draw(transparency: number): void;
+    draw(inGame: number, viewScaleOpt: number?, viewTranslationOpt: p5.Vector?): void;
     doPhysicsStep(attractors: Attractor[], zippers: Zipper[], timeMult: number = 1): void;
     getZipperVector(zippers: Zipper[], timeMult: number): p5.Vector;
     doSpringPhysics(attractors: Attractor[], timeMult: number): void;

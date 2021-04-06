@@ -1,6 +1,3 @@
-let viewTranslation;
-let viewScale;
-
 /**
  * @type {import("states/states").EditorState}
  */
@@ -14,6 +11,7 @@ let level;
 let drawFunc = undefined;
 let mouseWheelFunc = undefined;
 let mouseDragFunc = undefined;
+let mouseClickFunc = undefined;
 function preload() {
   import("./sketchInit.js").then(module => module.preload());
 }
@@ -46,6 +44,15 @@ function mouseDragged(event) {
     });
   else
     return mouseDragFunc(event);
+}
+function mouseClicked() {
+  if (typeof mouseClickFunc != "function")
+    import("./sketchInit.js").then(module => {
+      mouseClickFunc = module.mouseClicked;
+      return module.mouseClicked();
+    });
+  else
+    return mouseClickFunc();
 }
 
 function windowResized() {

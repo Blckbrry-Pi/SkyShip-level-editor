@@ -32,6 +32,36 @@ export class EditorState {
      * @type {number | null}
      */
     this.selectedIndex = null;
+
+    /**
+     * Index of selected attractor, zipper, or obstacle.
+     * @type {number}
+     */
+    this.paramIndex = 0;
+
+    /**
+     * Translation of the editor's level view.
+     * @type {p5.Vector}
+     */
+    this.viewTranslation = createVector();
+
+    /**
+     * Zoom level/scale of editor's level view.
+     * @type {number}
+     */
+    this.viewScale = 1;
+
+    /**
+     * Stores the level-relative grid size.
+     * @type {number}
+     * **/
+    this.gridSize = 25;
+
+    /**
+     * Stores whether the editor is quantizing inputs or not.
+     * @type {boolean}
+     * **/
+    this.quantization = true;
   }
 
   /**
@@ -39,11 +69,13 @@ export class EditorState {
    * @param {keyof typeof states} stateName
    * @param {"attractors" | "zippers" | "obstacles" | "finishLine" | "runner" | null} objectType
    * @param {number | null} selectedIndex
+   * @param {number | null} paramIndex
    */
-  setState(stateName, objectType = null, selectedIndex = null) {
+  setState(stateName, objectType = null, selectedIndex = null, paramIndex = 0) {
     this.stateName = stateName;
     this.objectType = objectType;
     this.selectedIndex = selectedIndex;
+    this.paramIndex = paramIndex;
   }
 
   /**
