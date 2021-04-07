@@ -3,5 +3,4 @@
  */
 export function loop(editorState) {
   cursor("default");
-  editorState.draw(level);
 }
