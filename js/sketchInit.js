@@ -1,8 +1,8 @@
-import { Runner } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js';
 import { initStars, starryBackground, rotateStars } from 'https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/backgroundStars.js';
 import { drawGrid } from './drawRoutine/grid.js';
 import { EditorState } from './states/states.js';
-import { ToolPalette } from './toolPalette.js';
+import { ExportModal } from './ui/export.js';
+import { ToolPalette } from './ui/toolPalette.js';
 
 export function preload() {
   
@@ -13,14 +13,27 @@ export function setup() {
   initStars(width * height / 320);
 
   editorState = new EditorState();
+  
   editorState.toolPalette = new ToolPalette(editorState, document.getElementById("tool-palette"));
   editorState.toolPalette.setup();
+
   level = {
     name: "My Level",
     attractors: [],
     zippers: [],
     obstacles: []
   };
+
+  const exportModal = new ExportModal(document.getElementById("export-modal"), level);
+  document.getElementById("export-button").addEventListener("click", e => {
+    e.stopPropagation();
+    try {
+      if (!exportModal.isOpen) exportModal.open();
+    } catch (/** @type {Error} */ error) {
+      alert(error.message);
+    }
+  });
+  
 }
 
 export function draw() {

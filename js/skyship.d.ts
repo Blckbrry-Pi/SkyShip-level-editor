@@ -28,6 +28,8 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/finishLine.js" 
   class FinishLine {
     constructor(x: number, y: number, rot: number, w: number, h: number);
     pos: p5.Vector;
+    angle: number;
+    size: p5.Vector;
     draw(viewScale: number, viewTranslation: p5.Vector): void;
     pointInLine(pointToCheck: p5.Vector): boolean;
   }

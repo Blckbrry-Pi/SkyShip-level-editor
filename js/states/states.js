@@ -78,7 +78,7 @@ export class EditorState {
 
     /**
      * Tool palette associated with the editor.
-     * @type {import("../toolPalette.js").ToolPalette | undefined}
+     * @type {import("../ui/toolPalette.js").ToolPalette | undefined}
      */
     this.toolPalette = undefined;
 

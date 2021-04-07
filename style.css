@@ -22,7 +22,7 @@ canvas {
   left: 16px;
   background-color: white;
   border-radius: 5px;
-  width: 64px;
+  width: 100px;
   padding: 8px;
 }
 
@@ -37,6 +37,8 @@ canvas {
   border-radius: 3px;
   background-color: transparent;
   transition: background-color 0.2s;
+  color: black;
+  font-size: 1rem;
 }
 
 #tool-palette button:not([data-active]):hover {
@@ -46,4 +48,86 @@ canvas {
 #tool-palette button[data-active] {
   background-color: blue;
   color: white;
+}
+
+#export-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: white;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 1rem;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  display: block;
+  color: black;
+  transition: background-color 0.2s;
+}
+
+#export-button:hover {
+  background-color: skyblue;
+}
+
+.modal-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 5px;
+  padding: 16px;
+}
+
+.modal-content .modal-header {
+  padding-bottom: 12px;
+}
+
+.modal-content textarea {
+  display: block;
+  width: 320px;
+  height: 320px;
+  font-family: monospace;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  border: none;
+  appearance: none;
+  padding: 4px;
+  resize: none;
+}
+
+.modal-actions {
+  padding-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.modal-actions button {
+  margin-left: 0.5rem;
+  display: block;
+  appearance: none;
+  background-color: #EEEEEE;
+  color: black;
+  border: none;
+  font-size: 1rem;
+  padding: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modal-actions button:hover {
+  background-color: skyblue;
 }

@@ -1,6 +1,8 @@
+import { stopPropagatingMouseEvents } from "../utils.js";
+
 export class ToolPalette {
   /**
-   * @param {import("./states/states.js").EditorState} editorState 
+   * @param {import("../states/states.js").EditorState} editorState 
    * @param {HTMLElement} domElement
    */
   constructor(editorState, domElement) {
@@ -26,9 +28,7 @@ export class ToolPalette {
       }
     );
 
-    this.domElement.addEventListener("click", e => {
-      e.stopPropagation(); // Stop click events from propagating to the canvas behind it
-    });
+    stopPropagatingMouseEvents(this.domElement);
 
     this.update();
   }
