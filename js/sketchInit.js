@@ -1,14 +1,11 @@
 import { Runner } from 'https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js';
 import { initStars, starryBackground, rotateStars } from 'https://blckbrry-pi.github.io/SkyShip/js/extraFunctions/backgroundStars.js';
 import { drawGrid } from './drawRoutine/grid.js';
-import { runnerSelector } from "./selectorSketches/runnerScroll.js"
-import { passCallbacks } from './selectorSketches/wrapperFunctions.js';
 import { EditorState } from './states/states.js';
+import { ToolPalette } from './toolPalette.js';
 
 const containerPos = createVector(100, 100);
 const containerSize = createVector(200, 250);
-
-let runneravailable = 10;
 
 export function preload() {
   
@@ -18,21 +15,9 @@ export function setup() {
   createCanvas(windowWidth, windowHeight);
   initStars(width * height / 320);
 
-  let div = createDiv('');
-  div.style('overflow', 'scroll');
-  div.style('max-height', containerSize.y + 'px');
-  div.position(containerPos.x, containerPos.y);
-
-  let runnerSketchMaker = passCallbacks(
-    runnerSelector,
-    () => {return runneravailable > 0;},
-    mouseIsInContainer,
-    () => {level.runner = new Runner(0, 0, 0, 0, 0); editorState.setState("selectNew", "runner", null, -1);}
-  );
-
-  for (let i = 0; i < 10; i++) new p5(runnerSketchMaker, div.elt);
-
   editorState = new EditorState();
+  editorState.toolPalette = new ToolPalette(editorState, document.getElementById("tool-palette"));
+  editorState.toolPalette.setup();
   level = {
     name: "My Level",
     attractors: [],
@@ -42,13 +27,10 @@ export function setup() {
 }
 
 export function draw() {
-  if (!editorState) return;
+  if (!editorState || !level) return;
 
   rotateStars(0.2);
   starryBackground(false);
-  stroke(0, 255, 0);
-  strokeWeight(4);
-  rect(containerPos.x, containerPos.y, containerSize.x, containerSize.y);
   drawGrid();
   editorState.doStateLoop();
 }
@@ -89,7 +71,6 @@ export function mouseDragged(event) {
 export function mouseClicked() {
   switch (editorState.stateName) {
     case "selectExisting":
-      editorState.setState("panScrollZoom");
       break;
     case "selectNew":
       editorState.paramIndex++;

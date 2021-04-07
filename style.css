@@ -1,7 +1,49 @@
-html, body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+body {
+  font-family: "Futura", Arial, sans-serif;
+}
+
+button {
+  font-family: inherit;
+}
+
 canvas {
   display: block;
+}
+
+#tool-palette {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: white;
+  border-radius: 5px;
+  width: 64px;
+  padding: 8px;
+}
+
+#tool-palette button {
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  display: block;
+  margin-bottom: 0;
+  padding: 4px;
+  width: 100%;
+  border-radius: 3px;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+#tool-palette button:not([data-active]):hover {
+  background-color: skyblue;
+}
+
+#tool-palette button[data-active] {
+  background-color: blue;
+  color: white;
 }
