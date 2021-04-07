@@ -4,9 +4,6 @@ import { drawGrid } from './drawRoutine/grid.js';
 import { EditorState } from './states/states.js';
 import { ToolPalette } from './toolPalette.js';
 
-const containerPos = createVector(100, 100);
-const containerSize = createVector(200, 250);
-
 export function preload() {
   
 }
@@ -36,15 +33,7 @@ export function draw() {
   editorState.draw(level);
 }
 
-function mouseIsInContainer() {
-  let xInBounds = containerPos.x < mouseX && mouseX < containerPos.x + containerSize.x;
-  let yInBounds = containerPos.y < mouseY && mouseY < containerPos.y + containerSize.y;
-  return xInBounds && yInBounds;
-}
-
 export function mouseWheel(event) {
-  if (mouseIsInContainer()) return true;
-
   const maxScale = 4;
   const minScale = 0.25;
 
