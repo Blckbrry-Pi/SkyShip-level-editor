@@ -2,6 +2,7 @@ import { initStars, starryBackground, rotateStars } from 'https://blckbrry-pi.gi
 import { drawGrid } from './drawRoutine/grid.js';
 import { EditorState } from './states/states.js';
 import { ExportModal } from './ui/export.js';
+import { ImportModal } from './ui/import.js';
 import { ToolPalette } from './ui/toolPalette.js';
 
 export function preload() {
@@ -28,10 +29,16 @@ export function setup() {
   document.getElementById("export-button").addEventListener("click", e => {
     e.stopPropagation();
     try {
-      if (!exportModal.isOpen) exportModal.open();
+      exportModal.open();
     } catch (/** @type {Error} */ error) {
       alert(error.message);
     }
+  });
+
+  const importModal = new ImportModal(document.getElementById("import-modal"), level);
+  document.getElementById("import-button").addEventListener("click", e => {
+    e.stopPropagation();
+    importModal.open();
   });
   
 }

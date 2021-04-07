@@ -17,11 +17,22 @@
     <button id="export-button">Export</button>
     <div class="modal-background" id="export-modal">
       <div class="modal-content">
-        <h3 class="modal-header">Import/Export Level</h3>
-        <textarea></textarea>
+        <h3 class="modal-header">Export Level</h3>
+        <textarea disabled></textarea>
         <div class="modal-actions">
           <button data-action="copy">Copy</button>
-          <button data-action="import">Done</button>
+          <button data-action="close">Done</button>
+        </div>
+      </div>
+    </div>
+    <button id="import-button">Import</button>
+    <div class="modal-background" id="import-modal">
+      <div class="modal-content">
+        <h3 class="modal-header">Import Level</h3>
+        <textarea></textarea>
+        <div class="modal-actions">
+          <button data-action="cancel">Cancel</button>
+          <button data-action="import">Import</button>
         </div>
       </div>
     </div>

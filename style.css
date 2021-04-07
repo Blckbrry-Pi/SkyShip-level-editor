@@ -50,9 +50,8 @@ canvas {
   color: white;
 }
 
-#export-button {
+#import-button, #export-button {
   position: absolute;
-  top: 16px;
   right: 16px;
   background-color: white;
   border-radius: 5px;
@@ -66,8 +65,16 @@ canvas {
   transition: background-color 0.2s;
 }
 
-#export-button:hover {
+#import-button:hover, #export-button:hover {
   background-color: skyblue;
+}
+
+#import-button {
+  top: 16px;
+}
+
+#export-button {
+  top: 64px;
 }
 
 .modal-background {
