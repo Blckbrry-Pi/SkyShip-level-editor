@@ -1,7 +1,7 @@
 /**
  * @param {import("states").EditorState} editorState 
  */
-export default function selectExisting(editorState) {
+export function loop(editorState) {
   cursor("default");
   editorState.draw(level);
 }

@@ -1,9 +1,21 @@
+import { Runner } from "https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js";
 import { runnerEdit } from "../paramSetFunctions/runner.js";
+
+/**
+ * @param {import("states").EditorState} editorState
+ */
+export function setup(editorState) {
+  switch (editorState.objectType) {
+    case "runner":
+      if (!level.runner) level.runner = new Runner(0, 0, 0, 0, 0);
+      break;
+  }
+}
 
 /**
  * @param {import("states").EditorState} editorState 
  */
-export default function selectNew(editorState) {
+export function loop(editorState) {
   cursor("default");
 
   switch(editorState.objectType) {

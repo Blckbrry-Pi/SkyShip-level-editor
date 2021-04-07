@@ -1,7 +1,7 @@
 /**
  * @param {import("states").EditorState} editorState 
  */
-export default function panScrollZoom(editorState) {
+export function loop(editorState) {
   cursor(mouseIsPressed ? "grabbing" : "grab");
   editorState.draw(level);
 }

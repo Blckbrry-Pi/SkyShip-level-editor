@@ -1,11 +1,24 @@
-import panScrollZoom from './panScrollZoom.js';
-import selectExisting from './selectExisting.js';
-import selectNew from './selectNew.js';
+import * as panScrollZoom from './panScrollZoom.js';
+import * as selectExisting from './selectExisting.js';
+import * as selectNew from './selectNew.js';
+
+/**
+ * @callback StateCallback
+ * @param {EditorState} editorState
+ * @returns {void}
+ */
+
+/**
+ * @typedef State
+ * @property {StateCallback} [setup]
+ * @property {StateCallback} loop
+ * @property {StateCallback} [cleanup]
+ */
 
 const states = {
-  panScrollZoom,
-  selectExisting,
-  selectNew
+  /** @type {State} */ panScrollZoom,
+  /** @type {State} */ selectExisting,
+  /** @type {State} */ selectNew
 };
 
 /**
@@ -68,6 +81,8 @@ export class EditorState {
      * @type {import("../toolPalette.js").ToolPalette | undefined}
      */
     this.toolPalette = undefined;
+
+    if (states[this.stateName].setup) states[this.stateName].setup(this);
   }
 
   /**
@@ -78,11 +93,15 @@ export class EditorState {
    * @param {number | null} paramIndex
    */
   setState(stateName, objectType = null, selectedIndex = null, paramIndex = 0) {
+    if (states[this.stateName].cleanup) states[this.stateName].cleanup(this);
+
     this.stateName = stateName;
     this.objectType = objectType;
     this.selectedIndex = selectedIndex;
     this.paramIndex = paramIndex;
     this.toolPalette.update();
+
+    if (states[this.stateName].setup) states[this.stateName].setup(this);
   }
 
   /**
@@ -111,7 +130,7 @@ export class EditorState {
    * Calls the function of the current state.
    */
   doStateLoop() {
-    states[this.stateName](this);
+    states[this.stateName].loop(this);
   }
 
   /**

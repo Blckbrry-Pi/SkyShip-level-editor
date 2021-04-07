@@ -25,6 +25,11 @@ export class ToolPalette {
         });
       }
     );
+
+    this.domElement.addEventListener("click", e => {
+      e.stopPropagation(); // Stop click events from propagating to the canvas behind it
+    });
+
     this.update();
   }
 
