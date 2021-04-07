@@ -7,7 +7,7 @@ import { runnerEdit } from "../paramSetFunctions/runner.js";
 export function setup(editorState) {
   switch (editorState.objectType) {
     case "runner":
-      if (!level.runner) level.runner = new Runner(0, 0, 0, 0, 0);
+      level.runner = new Runner(0, 0, 0, 0, 0);
       break;
   }
 }
@@ -32,8 +32,7 @@ export function loop(editorState) {
         editorState.setState("panScrollZoom");
         break;
       }
-      if (editorState.paramIndex !== -1) runnerEdit[editorState.paramIndex].editParam(level.runner)
-      editorState.draw(level);
+      if (editorState.paramIndex !== -1) runnerEdit[editorState.paramIndex].editParam(level.runner);
       break;
   }
   console.log(editorState.getSelectedObject(level));

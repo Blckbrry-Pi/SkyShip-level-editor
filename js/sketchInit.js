@@ -33,6 +33,7 @@ export function draw() {
   starryBackground(false);
   drawGrid();
   editorState.doStateLoop();
+  editorState.draw(level);
 }
 
 function mouseIsInContainer() {

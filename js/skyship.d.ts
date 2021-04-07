@@ -19,7 +19,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/attractor.js" {
     inRange(shipx: number, shipy: number): boolean;
     collided(shipx: number, shipy: number): boolean;
     drawBounds(): void;
-    draw(): void;
+    draw(viewScale: number, viewTranslation: p5.Vector): void;
     rotStep(timeMult: number = 1): void;
   }
 }
@@ -28,7 +28,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/finishLine.js" 
   class FinishLine {
     constructor(x: number, y: number, rot: number, w: number, h: number);
     pos: p5.Vector;
-    draw(): void;
+    draw(viewScale: number, viewTranslation: p5.Vector): void;
     pointInLine(pointToCheck: p5.Vector): boolean;
   }
 }
@@ -49,7 +49,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/obstacles.js" {
     points: p5.Vector[];
     isOuter: boolean;
     pointInObstacle(pointToCheckBounds: p5.Vector): boolean;
-    draw(): void;
+    draw(viewScale: number, viewTranslation: p5.Vector): void;
     drawOutline(): void;
     setClipShape(): void;
     drawClipRect(): void;
@@ -66,7 +66,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js" {
     vel: p5.Vector;
     targetVelMag: number;
     connectedAttractor: {index: number, springLen: number, pos: p5.Vector};
-    draw(inGame: number, viewScaleOpt: number?, viewTranslationOpt: p5.Vector?): void;
+    draw(inGame: number, viewScale: number, viewTranslation: p5.Vector): void;
     doPhysicsStep(attractors: Attractor[], zippers: Zipper[], timeMult: number = 1): void;
     getZipperVector(zippers: Zipper[], timeMult: number): p5.Vector;
     doSpringPhysics(attractors: Attractor[], timeMult: number): void;
@@ -89,7 +89,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js" {
     calculateLineIntersect(otherLine: DirectionalLine): p5.Vector | false;
     calculateLineSegIntersect(otherLine: DirectionalLine): p5.Vector | false;
     getVector(): p5.Vector;
-    draw(): void;
+    draw(viewScale: number, viewTranslation: p5.Vector): void;
   }
 
   class Zipper {
@@ -101,7 +101,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js" {
     length(): number;
     getPerpThroughPoint(pointIn: p5.Vector): DirectionalLine | false;
     advanceLine(lineToAdvance: DirectionalLine): void;
-    draw(): void;
+    draw(viewScale: number, viewTranslation: p5.Vector): void;
   }
 }
 
