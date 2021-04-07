@@ -116,7 +116,6 @@ export class EditorState {
    *  null}
    */
   getSelectedObject(level) {
-    if (this.stateName !== "selectExisting") return null;
     if (!this.objectType) {
       return null;
     } else if (this.objectType === "finishLine" || this.objectType === "runner") {
