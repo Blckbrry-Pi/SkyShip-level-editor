@@ -85,10 +85,10 @@ export class EditorState {
     this.toolPalette = undefined;
 
     /**
-     * Old level, stored during playtesting.
+     * Level during playtesting.
      * @type {Level | null}
      */
-    this.oldLevel = null;
+    this.playtestingLevel = null;
 
 
     if (states[this.stateName].setup) states[this.stateName].setup(this);

@@ -5,26 +5,25 @@ import { runnerStep, timeStep } from "https://blckbrry-pi.github.io/SkyShip/js/e
  * @param {import("./states").EditorState} editorState 
  */
 export function setup(editorState) {
-  editorState.oldLevel = level;
-  level = _.cloneDeep(level);
+  editorState.playtestingLevel = _.cloneDeep(level);
 
   // @ts-ignore
   window.mouseWasPressed = false;
   
   // @ts-ignore
-  window.runner = level.runner;
+  window.runner = editorState.playtestingLevel.runner;
 
   // @ts-ignore
-  window.attractors = level.attractors;
+  window.attractors = editorState.playtestingLevel.attractors;
 
   // @ts-ignore
-  window.zippers = level.zippers;
+  window.zippers = editorState.playtestingLevel.zippers;
 
   // @ts-ignore
-  window.obstacles = level.obstacles;
+  window.obstacles = editorState.playtestingLevel.obstacles;
 
   // @ts-ignore
-  window.finishLine = level.finishLine;
+  window.finishLine = editorState.playtestingLevel.finishLine;
 
   // @ts-ignore
   window.timeMult = undefined;
@@ -40,12 +39,5 @@ export function loop(editorState) {
   cursor("default");
   timeStep();
   runnerStep();
-}
-
-/**
- * @param {import("./states").EditorState} editorState 
- */
-export function cleanup(editorState) {
-  level = editorState.oldLevel;
-  editorState.oldLevel = null;
+  editorState.draw(editorState.playtestingLevel);
 }
