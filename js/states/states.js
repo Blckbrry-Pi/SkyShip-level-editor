@@ -1,6 +1,7 @@
 import * as panScrollZoom from './panScrollZoom.js';
 import * as selectExisting from './selectExisting.js';
 import * as selectNew from './selectNew.js';
+import * as playtest from './playtest.js';
 
 /**
  * @callback StateCallback
@@ -18,7 +19,8 @@ import * as selectNew from './selectNew.js';
 const states = {
   /** @type {State} */ panScrollZoom,
   /** @type {State} */ selectExisting,
-  /** @type {State} */ selectNew
+  /** @type {State} */ selectNew,
+  /** @type {State} */ playtest
 };
 
 /**
@@ -81,6 +83,13 @@ export class EditorState {
      * @type {import("../ui/toolPalette.js").ToolPalette | undefined}
      */
     this.toolPalette = undefined;
+
+    /**
+     * Old level, stored during playtesting.
+     * @type {Level | null}
+     */
+    this.oldLevel = null;
+
 
     if (states[this.stateName].setup) states[this.stateName].setup(this);
   }

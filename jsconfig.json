@@ -8,6 +8,6 @@
     "allowUmdGlobalAccess": true
   },
   "typeAcquisition": {
-    "include": ["p5"]
+    "include": ["p5", "lodash"]
   }
 }
