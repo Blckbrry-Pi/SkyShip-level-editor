@@ -36,8 +36,19 @@ export function setup(editorState) {
  * @param {import("./states").EditorState} editorState 
  */
 export function loop(editorState) {
+  const level = editorState.playtestingLevel;
   cursor("default");
   timeStep();
   runnerStep();
+  if (
+    level.attractors.find(attractor => {
+      return attractor.collided(level.runner.pos.x, level.runner.pos.y);
+    }) ||
+    level.obstacles.find(obstacle => {
+      return obstacle.pointInObstacle(level.runner.pos);
+    }) ||
+    level.finishLine.pointInLine(level.runner.pos)) {
+    editorState.setState("playtestDone");
+  }
   editorState.draw(editorState.playtestingLevel);
 }

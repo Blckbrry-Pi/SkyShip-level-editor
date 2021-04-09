@@ -2,6 +2,7 @@ import * as panScrollZoom from './panScrollZoom.js';
 import * as selectExisting from './selectExisting.js';
 import * as selectNew from './selectNew.js';
 import * as playtest from './playtest.js';
+import * as playtestDone from './playtestDone.js';
 
 /**
  * @callback StateCallback
@@ -20,7 +21,8 @@ const states = {
   /** @type {State} */ panScrollZoom,
   /** @type {State} */ selectExisting,
   /** @type {State} */ selectNew,
-  /** @type {State} */ playtest
+  /** @type {State} */ playtest,
+  /** @type {State} */ playtestDone
 };
 
 /**

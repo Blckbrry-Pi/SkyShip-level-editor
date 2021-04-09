@@ -50,7 +50,7 @@ export function draw() {
   starryBackground(false);
   drawGrid();
   editorState.doStateLoop();
-  if (editorState.stateName !== "playtest") editorState.draw(level);
+  if (editorState.stateName !== "playtest" && editorState.stateName !== "playtestDone") editorState.draw(level);
 }
 
 export function mouseWheel(event) {
