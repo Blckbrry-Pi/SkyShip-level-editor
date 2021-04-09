@@ -199,3 +199,14 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/states/states.js" {
   function newState(stateEnum: StateIdentifier): State;
   function doStateLoop(stateToDo: State): void;
 }
+
+declare interface Window {
+  mouseWasPressed?: boolean;
+  attractors?: import("https://blckbrry-pi.github.io/SkyShip/js/classes/attractor.js").Attractor[];
+  zippers?: import("https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js").Zipper[];
+  obstacles?: import("https://blckbrry-pi.github.io/SkyShip/js/classes/obstacles.js").Obstacle[];
+  finishLine?: import("https://blckbrry-pi.github.io/SkyShip/js/classes/finishLine.js").FinishLine;
+  runner?: import("https://blckbrry-pi.github.io/SkyShip/js/classes/runner.js").Runner;
+  timeMult?: number;
+  globalMouse?: import("https://blckbrry-pi.github.io/SkyShip/js/classes/mouse.js").Mouse;
+}

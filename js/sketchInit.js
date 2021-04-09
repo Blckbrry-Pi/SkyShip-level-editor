@@ -50,6 +50,8 @@ export function draw() {
   starryBackground(false);
   drawGrid();
   editorState.doStateLoop();
+
+  // TODO: Make drawing the responsibility of each state?
   if (editorState.stateName !== "playtest" && editorState.stateName !== "playtestDone") editorState.draw(level);
 }
 
