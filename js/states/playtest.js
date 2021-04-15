@@ -29,6 +29,8 @@ export function setup(editorState) {
 export function loop(editorState) {
   const level = editorState.playtestingLevel;
   cursor("default");
+  window.globalMouse.setTranslation(editorState.viewTranslation);
+  window.globalMouse.setScale(editorState.viewScale);
   timeStep();
   runnerStep();
   if (
