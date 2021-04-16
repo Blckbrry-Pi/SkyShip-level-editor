@@ -66,3 +66,7 @@ export function exportLevel(level, pretty = false) {
 export function stopPropagatingMouseEvents(element) {
   ["click", "mousedown", "mousemove"].forEach(event => element.addEventListener(event, e => e.stopPropagation()));
 }
+
+export const localStorageKeys = {
+  stars: "skyshipleveleditor_stars"
+};

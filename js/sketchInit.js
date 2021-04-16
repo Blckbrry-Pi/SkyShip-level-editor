@@ -3,15 +3,24 @@ import { drawGrid } from './drawRoutine/grid.js';
 import { EditorState } from './states/states.js';
 import { ExportModal } from './ui/export.js';
 import { ImportModal } from './ui/import.js';
+import { SettingsModal } from './ui/settings.js';
 import { ToolPalette } from './ui/toolPalette.js';
+import { localStorageKeys } from './utils.js';
 
 export function preload() {
   
 }
 
+function configureStars() {
+  let stars = parseInt(localStorage.getItem(localStorageKeys.stars));
+  if (isNaN(stars)) stars = 3000;
+
+  initStars(stars);
+}
+
 export function setup() {
   createCanvas(windowWidth, windowHeight);
-  initStars(width * height / 320);
+  configureStars();
 
   editorState = new EditorState();
   
@@ -39,6 +48,12 @@ export function setup() {
   document.getElementById("import-button").addEventListener("click", e => {
     e.stopPropagation();
     importModal.open();
+  });
+
+  const settingsModal = new SettingsModal(document.getElementById("settings-modal"), () => configureStars());
+  document.getElementById("settings-button").addEventListener("click", e => {
+    e.stopPropagation();
+    settingsModal.open();
   });
   
 }

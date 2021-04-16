@@ -38,6 +38,25 @@
         </div>
       </div>
     </div>
+    <button id="settings-button">Settings</button>
+    <div class="modal-background" id="settings-modal">
+      <div class="modal-content">
+        <h3 class="modal-header">Settings</h3>
+        <p>
+          <label for="settings-stars">Starry Background: </label>
+          <select id="settings-stars">
+            <option value="0">Disabled</option>
+            <option value="1000">Performance</option>
+            <option value="3000">Balanced</option>
+            <option value="5000">Fancy</option>
+            <option value="20000">A Sky Full of Stars</option>
+          </select>
+        </p>
+        <div class="modal-actions">
+          <button data-action="done">Done</button>
+        </div>
+      </div>
+    </div>
     <script src="js/sketch.js"></script>
   </body>
 </html>
