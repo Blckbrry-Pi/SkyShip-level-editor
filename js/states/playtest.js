@@ -11,14 +11,13 @@ export function setup(editorState) {
     return;
   }
 
-  editorState.playtestingLevel = _.cloneDeep(level);
 
   window.mouseWasPressed = false;
-  window.runner = editorState.playtestingLevel.runner;
-  window.attractors = editorState.playtestingLevel.attractors;
-  window.zippers = editorState.playtestingLevel.zippers;
-  window.obstacles = editorState.playtestingLevel.obstacles;
-  window.finishLine = editorState.playtestingLevel.finishLine;
+  window.runner = level.runner;
+  window.attractors = level.attractors;
+  window.zippers = level.zippers;
+  window.obstacles = level.obstacles;
+  window.finishLine = level.finishLine;
   window.timeMult = undefined;
   window.globalMouse = new Mouse();
 }
@@ -27,7 +26,6 @@ export function setup(editorState) {
  * @param {import("./states").EditorState} editorState 
  */
 export function loop(editorState) {
-  const level = editorState.playtestingLevel;
   cursor("default");
   window.globalMouse.setTranslation(editorState.viewTranslation);
   window.globalMouse.setScale(editorState.viewScale);
@@ -43,5 +41,12 @@ export function loop(editorState) {
     level.finishLine && level.finishLine.pointInLine(level.runner.pos)) {
     editorState.setState("playtestDone");
   }
-  editorState.draw(editorState.playtestingLevel);
+}
+
+/**
+ * @param {import("./states").EditorState} editorState 
+ */
+export function cleanup(editorState) {
+  editorState.playtestingLevel = level;
+  level = editorState.prevLevelState;
 }

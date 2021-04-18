@@ -64,10 +64,8 @@ export function draw() {
   rotateStars(0.2);
   starryBackground(false);
   drawGrid();
+  editorState.draw(level);
   editorState.doStateLoop();
-
-  // TODO: Make drawing the responsibility of each state?
-  if (editorState.stateName !== "playtest" && editorState.stateName !== "playtestDone") editorState.draw(level);
 }
 
 export function mouseWheel(event) {

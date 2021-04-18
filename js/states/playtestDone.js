@@ -1,7 +1,20 @@
 /**
  * @param {import("./states").EditorState} editorState 
  */
+export function setup(editorState) {
+  level = editorState.playtestingLevel;
+}
+
+/**
+ * @param {import("./states").EditorState} editorState 
+ */
 export function loop(editorState) {
   cursor("default");
-  editorState.draw(editorState.playtestingLevel);
+}
+
+/**
+ * @param {import("./states").EditorState} editorState 
+ */
+export function cleanup(editorState) {
+  level = editorState.prevLevelState;
 }
