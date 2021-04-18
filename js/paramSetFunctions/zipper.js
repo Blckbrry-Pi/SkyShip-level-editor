@@ -26,7 +26,7 @@ function editPosition1(zipper) {
   }
 
   zipper.line.startPoint = mousePos;
-  zipper.line.endPoint = mousePos;
+  if (editorState.stateName == "selectNew") zipper.line.endPoint = mousePos;
 }
 
 /**
