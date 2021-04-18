@@ -101,7 +101,7 @@ declare module "https://blckbrry-pi.github.io/SkyShip/js/classes/zippers.js" {
     leadingDist: number;
     strength: number;
     length(): number;
-    getPerpThroughPoint(pointIn: p5.Vector): DirectionalLine | false;
+    getPerpThroughPoint(pointIn: p5.Vector): DirectionalLine;
     advanceLine(lineToAdvance: DirectionalLine): void;
     draw(viewScale: number, viewTranslation: p5.Vector): void;
   }

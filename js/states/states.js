@@ -87,6 +87,12 @@ export class EditorState {
     this.toolPalette = undefined;
 
     /**
+     * Level during adding new or editing existing.
+     * @type {Level | null}
+     */
+    this.prevLevelState = _.cloneDeep(level);
+
+    /**
      * Level during playtesting.
      * @type {Level | null}
      */
@@ -105,6 +111,8 @@ export class EditorState {
    */
   setState(stateName, objectType = null, selectedIndex = null, paramIndex = 0) {
     if (states[this.stateName].cleanup) states[this.stateName].cleanup(this);
+
+    this.prevLevelState = _.cloneDeep(level);
 
     this.stateName = stateName;
     this.objectType = objectType;
