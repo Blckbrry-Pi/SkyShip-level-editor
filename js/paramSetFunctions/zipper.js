@@ -126,10 +126,10 @@ function editStrength(zipper) {
   mouseVec.sub(displayPoint);
 
   let strengthPos = constrain(mouseVec.y, -215, -15);
-  let unSqPos = map(strengthPos, -15, -215, Math.cbrt(scaleMin), Math.cbrt(scaleMax));
-  let sqPos = unSqPos * unSqPos;
+  let unCbPos = map(strengthPos, -15, -215, Math.cbrt(scaleMin), Math.cbrt(scaleMax));
+  let cbPos = unCbPos * unCbPos * unCbPos;
 
-  zipper.strength = sqPos;
+  zipper.strength = cbPos;
 
   push();
     translate(displayPoint);

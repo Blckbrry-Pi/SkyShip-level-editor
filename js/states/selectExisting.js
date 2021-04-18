@@ -106,8 +106,6 @@ export function onMouseClick(event) {
   if (editorState.getSelectedObject(level) === null) {
     if (editorState.selectedObjs.length === 0) {
       editorState.selectedObjs = getHoveredObjects(level);
-
-      console.log(editorState.selectedObjs);
     } else {
       let newMenu = drawMenu(editorState.selectedObjs.map(element => {return {entryName: element.objType, index: element.index}}));
       if (newMenu !== null) {
