@@ -11,10 +11,17 @@ import * as playtestDone from './playtestDone.js';
  */
 
 /**
+ * @callback UserMouseEvent
+ * @param {MouseEvent} event
+ * @returns {void} 
+ */
+
+/**
  * @typedef State
  * @property {StateCallback} [setup]
  * @property {StateCallback} loop
  * @property {StateCallback} [cleanup]
+ * @property {UserMouseEvent} [onMouseClick]
  */
 
 const states = {
@@ -98,6 +105,22 @@ export class EditorState {
      */
     this.playtestingLevel = null;
 
+    /**
+     * Stores position of previous mouse click
+     * @type {p5.Vector}
+     */
+    this.prevClick = createVector(0, 0);
+
+    /**
+     * @typedef ObjectIndex
+     * @property {"attractors" | "zippers" | "obstacles" | "finishLine" | "runner"} objType
+     * @property {number} index
+     */
+    /**
+     * Stores which objects are still possibly selected.
+     * @type {ObjectIndex[]}
+     */
+    this.selectedObjs = [];
 
     if (states[this.stateName].setup) states[this.stateName].setup(this);
   }
@@ -161,5 +184,14 @@ export class EditorState {
     if (level.finishLine) level.finishLine.draw(this.viewScale, this.viewTranslation);
 
     if (level.runner) level.runner.draw(0, this.viewScale, this.viewTranslation);
+  }
+
+  /**
+   * Runs the mouse click even for each state.
+   * @param {MouseEvent} event
+   */
+  doMouseClick(event) {
+    if (states[this.stateName].onMouseClick) states[this.stateName].onMouseClick(event);
+    this.prevClick = createVector(mouseX, mouseY);
   }
 }

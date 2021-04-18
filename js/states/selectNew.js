@@ -76,6 +76,16 @@ export function loop(editorState) {
   }
 }
 
-export function cleanup(state) {
-  level = state.prevLevelState;
+/**
+ * @param {import("states").EditorState} editorState 
+ */
+export function cleanup(editorState) {
+  level = editorState.prevLevelState;
+}
+
+/**
+ * @param {MouseEvent} event 
+ */
+export function onMouseClick(event) {
+  editorState.paramIndex++;
 }

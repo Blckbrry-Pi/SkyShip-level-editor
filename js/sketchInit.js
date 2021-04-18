@@ -93,12 +93,6 @@ export function mouseDragged(event) {
   if (editorState.stateName == "panScrollZoom") editorState.viewTranslation.sub(movement);
 }
 
-export function mouseClicked() {
-  switch (editorState.stateName) {
-    case "selectExisting":
-      break;
-    case "selectNew":
-      editorState.paramIndex++;
-      break;
-  }
+export function mouseClicked(event) {
+  editorState.doMouseClick(event);
 }
